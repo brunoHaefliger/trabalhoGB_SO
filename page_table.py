@@ -10,7 +10,7 @@ class PageTableEntry:
     page_no: int                   # número da página virtual
     frame_no: int  = -1            # frame físico mapeado (-1 = não mapeado)
     valid: bool    = False         # True se a página está em memória principal
-    dirty: bool    = False         # True se a página foi modificada (para extensões futuras)
+    dirty: bool    = False         # True se a página foi modificada
     last_used: int = 0             # timestamp para LRU
 
 
