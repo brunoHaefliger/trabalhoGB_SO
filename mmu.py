@@ -1,15 +1,15 @@
 """
-MMU – Memory Management Unit
+MMU - Memory Management Unit
 
 Responsabilidades:
-  • Manter a tabela de páginas de cada processo registrado.
-  • Traduzir endereço virtual -> endereço físico.
-  • Detectar page fault e resolvê-lo (frames livres ou substituição LRU).
-  • Registrar estatísticas de acesso.
+  - Manter a tabela de páginas de cada processo registrado.
+  - Traduzir endereço virtual -> endereço físico.
+  - Detectar page fault e resolvê-lo (frames livres ou substituição LRU).
+  - Registrar estatísticas de acesso.
 
 Algoritmo de substituição: LRU (Least Recently Used)
-  – A página residente com o menor timestamp 'last_used' é escolhida para sair.
-  – O timestamp global (self._clock) avança a cada acesso bem-sucedido.
+  - A página residente com o menor timestamp 'last_used' é escolhida para sair.
+  - O timestamp global (self._clock) avança a cada acesso bem-sucedido.
 """
 
 import threading
@@ -71,7 +71,7 @@ class MMU:
             result["page_no"] = page_no
             result["offset"]  = offset
 
-            # Sanidade: página existe no espaço do processo?
+            # página existe no espaço do processo?
             if not proc.valid_page(page_no):
                 raise ValueError(
                     f"PID {pid}: endereço virtual 0x{virtual_addr:06X} "
