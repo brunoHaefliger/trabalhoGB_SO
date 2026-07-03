@@ -24,7 +24,7 @@ class Process:
         # Número de páginas que este processo efetivamente usa
         self.num_pages: int = (self.size + PAGE_SIZE - 1) // PAGE_SIZE
 
-        # "Disco": dict page_no → bytearray(PAGE_SIZE)
+        # "Disco": dict page_no -> bytearray(PAGE_SIZE)
         # Gerado sob demanda para economizar memória real do simulador
         self._disk_cache: dict[int, bytearray] = {}
         self._rng = random.Random(seed if seed is not None else pid)
