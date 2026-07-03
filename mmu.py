@@ -3,7 +3,7 @@ MMU – Memory Management Unit
 
 Responsabilidades:
   • Manter a tabela de páginas de cada processo registrado.
-  • Traduzir endereço virtual → endereço físico.
+  • Traduzir endereço virtual -> endereço físico.
   • Detectar page fault e resolvê-lo (frames livres ou substituição LRU).
   • Registrar estatísticas de acesso.
 
