@@ -1,6 +1,6 @@
 """
 Processo leve (thread): tem um PID, um tamanho (1 byte … 1 MB) e um "arquivo"
-que simula seus dados em disco – usado quando uma página precisa ser carregada.
+que simula seus dados em disco, usado quando uma página precisa ser carregada.
 
 O conteúdo de cada página é gerado deterministicamente a partir do PID e do
 número de página, de forma que ao exibir um byte qualquer seja possível
