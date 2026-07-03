@@ -1,0 +1,364 @@
+════════════════════════════════════════════════════════════════
+  SIMULADOR DE MEMÓRIA VIRTUAL
+════════════════════════════════════════════════════════════════
+  Memória principal : 64 KB  (65536 bytes)
+  Memória virtual   : 1 MB   (1048576 bytes)
+  Tamanho de página : 8 KB   (8192 bytes)
+  Frames disponíveis: 8
+  Páginas virtuais  : 128
+  Algoritmo subst.  : LRU (Least Recently Used)
+
+════════════════════════════════════════════════════════════════
+  PROCESSOS CRIADOS
+════════════════════════════════════════════════════════════════
+  Process(pid=1, size=98304 bytes, pages=12)
+  Process(pid=2, size=40960 bytes, pages=5)
+  Process(pid=3, size=131072 bytes, pages=16)
+
+════════════════════════════════════════════════════════════════
+  EXECUÇÃO DAS THREADS (acesso concorrente à memória)
+════════════════════════════════════════════════════════════════
+
+[PID 1] Instrução #1
+  Endereço virtual : 0x00CED6  (página   6 | offset 3798)
+  *** PAGE FAULT ***
+  → Frame livre 0 utilizado
+  → Página 6 carregada do disco → frame 0
+  Endereço físico  : 0x00ED6  (frame 0 | offset 3798)
+  Conteúdo lido    : 0xFC  (252)
+
+[PID 2] Instrução #1
+  Endereço virtual : 0x000D90  (página   0 | offset 3472)
+  *** PAGE FAULT ***
+  → Frame livre 1 utilizado
+  → Página 0 carregada do disco → frame 1
+  Endereço físico  : 0x02D90  (frame 1 | offset 3472)
+  Conteúdo lido    : 0x70  (112)
+
+[PID 3] Instrução #1
+  Endereço virtual : 0x0178A8  (página  11 | offset 6312)
+  *** PAGE FAULT ***
+  → Frame livre 2 utilizado
+  → Página 11 carregada do disco → frame 2
+  Endereço físico  : 0x058A8  (frame 2 | offset 6312)
+  Conteúdo lido    : 0x91  (145)
+
+[PID 1] Instrução #2
+  Endereço virtual : 0x00C2F2  (página   6 | offset  754)
+  → Página 6 já em memória (frame 0)
+  Endereço físico  : 0x002F2  (frame 0 | offset  754)
+  Conteúdo lido    : 0xC6  (198)
+
+[PID 2] Instrução #2
+  Endereço virtual : 0x00928A  (página   4 | offset 4746)
+  *** PAGE FAULT ***
+  → Frame livre 3 utilizado
+  → Página 4 carregada do disco → frame 3
+  Endereço físico  : 0x0728A  (frame 3 | offset 4746)
+  Conteúdo lido    : 0xA3  (163)
+
+[PID 3] Instrução #2
+  Endereço virtual : 0x019C66  (página  12 | offset 7270)
+  *** PAGE FAULT ***
+  → Frame livre 4 utilizado
+  → Página 12 carregada do disco → frame 4
+  Endereço físico  : 0x09C66  (frame 4 | offset 7270)
+  Conteúdo lido    : 0x5C  (92)
+
+[PID 1] Instrução #3
+  Endereço virtual : 0x006670  (página   3 | offset 1648)
+  *** PAGE FAULT ***
+  → Frame livre 5 utilizado
+  → Página 3 carregada do disco → frame 5
+  Endereço físico  : 0x0A670  (frame 5 | offset 1648)
+  Conteúdo lido    : 0x31  (49)
+
+[PID 2] Instrução #3
+  Endereço virtual : 0x007B00  (página   3 | offset 6912)
+  *** PAGE FAULT ***
+  → Frame livre 6 utilizado
+  → Página 3 carregada do disco → frame 6
+  Endereço físico  : 0x0DB00  (frame 6 | offset 6912)
+  Conteúdo lido    : 0xB7  (183)
+
+[PID 3] Instrução #3
+  Endereço virtual : 0x002965  (página   1 | offset 2405)
+  *** PAGE FAULT ***
+  → Frame livre 7 utilizado
+  → Página 1 carregada do disco → frame 7
+  Endereço físico  : 0x0E965  (frame 7 | offset 2405)
+  Conteúdo lido    : 0x60  (96)
+
+[PID 1] Instrução #4
+  Endereço virtual : 0x0132E9  (página   9 | offset 4841)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 2 página 0 removida do frame 1
+  → Página 9 carregada do disco → frame 1
+  Endereço físico  : 0x032E9  (frame 1 | offset 4841)
+  Conteúdo lido    : 0x36  (54)
+
+[PID 2] Instrução #4
+  Endereço virtual : 0x0019D2  (página   0 | offset 6610)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 3 página 11 removida do frame 2
+  → Página 0 carregada do disco → frame 2
+  Endereço físico  : 0x059D2  (frame 2 | offset 6610)
+  Conteúdo lido    : 0x53  (83)
+
+[PID 3] Instrução #4
+  Endereço virtual : 0x01495C  (página  10 | offset 2396)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 1 página 6 removida do frame 0
+  → Página 10 carregada do disco → frame 0
+  Endereço físico  : 0x0095C  (frame 0 | offset 2396)
+  Conteúdo lido    : 0x6B  (107)
+
+[PID 1] Instrução #5
+  Endereço virtual : 0x005B8B  (página   2 | offset 7051)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 2 página 4 removida do frame 3
+  → Página 2 carregada do disco → frame 3
+  Endereço físico  : 0x07B8B  (frame 3 | offset 7051)
+  Conteúdo lido    : 0xB2  (178)
+
+[PID 2] Instrução #5
+  Endereço virtual : 0x007A74  (página   3 | offset 6772)
+  → Página 3 já em memória (frame 6)
+  Endereço físico  : 0x0DA74  (frame 6 | offset 6772)
+  Conteúdo lido    : 0x03  (3)
+
+[PID 3] Instrução #5
+  Endereço virtual : 0x00717A  (página   3 | offset 4474)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 3 página 12 removida do frame 4
+  → Página 3 carregada do disco → frame 4
+  Endereço físico  : 0x0917A  (frame 4 | offset 4474)
+  Conteúdo lido    : 0x40  (64)
+
+[PID 1] Instrução #6
+  Endereço virtual : 0x0075E4  (página   3 | offset 5604)
+  → Página 3 já em memória (frame 5)
+  Endereço físico  : 0x0B5E4  (frame 5 | offset 5604)
+  Conteúdo lido    : 0x21  (33)
+
+[PID 2] Instrução #6
+  Endereço virtual : 0x0074E7  (página   3 | offset 5351)
+  → Página 3 já em memória (frame 6)
+  Endereço físico  : 0x0D4E7  (frame 6 | offset 5351)
+  Conteúdo lido    : 0x14  (20)
+
+[PID 3] Instrução #6
+  Endereço virtual : 0x006239  (página   3 | offset  569)
+  → Página 3 já em memória (frame 4)
+  Endereço físico  : 0x08239  (frame 4 | offset  569)
+  Conteúdo lido    : 0xAD  (173)
+
+[PID 1] Instrução #7
+  Endereço virtual : 0x007F32  (página   3 | offset 7986)
+  → Página 3 já em memória (frame 5)
+  Endereço físico  : 0x0BF32  (frame 5 | offset 7986)
+  Conteúdo lido    : 0xD3  (211)
+
+[PID 2] Instrução #7
+  Endereço virtual : 0x000D93  (página   0 | offset 3475)
+  → Página 0 já em memória (frame 2)
+  Endereço físico  : 0x04D93  (frame 2 | offset 3475)
+  Conteúdo lido    : 0x31  (49)
+
+[PID 3] Instrução #7
+  Endereço virtual : 0x00AA77  (página   5 | offset 2679)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 3 página 1 removida do frame 7
+  → Página 5 carregada do disco → frame 7
+  Endereço físico  : 0x0EA77  (frame 7 | offset 2679)
+  Conteúdo lido    : 0x32  (50)
+
+[PID 1] Instrução #8
+  Endereço virtual : 0x004438  (página   2 | offset 1080)
+  → Página 2 já em memória (frame 3)
+  Endereço físico  : 0x06438  (frame 3 | offset 1080)
+  Conteúdo lido    : 0x2B  (43)
+
+[PID 2] Instrução #8
+  Endereço virtual : 0x0087C0  (página   4 | offset 1984)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 1 página 9 removida do frame 1
+  → Página 4 carregada do disco → frame 1
+  Endereço físico  : 0x027C0  (frame 1 | offset 1984)
+  Conteúdo lido    : 0x15  (21)
+
+[PID 3] Instrução #8
+  Endereço virtual : 0x00174B  (página   0 | offset 5963)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 3 página 10 removida do frame 0
+  → Página 0 carregada do disco → frame 0
+  Endereço físico  : 0x0174B  (frame 0 | offset 5963)
+  Conteúdo lido    : 0x83  (131)
+
+[PID 1] Instrução #9
+  Endereço virtual : 0x002C54  (página   1 | offset 3156)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 2 página 3 removida do frame 6
+  → Página 1 carregada do disco → frame 6
+  Endereço físico  : 0x0CC54  (frame 6 | offset 3156)
+  Conteúdo lido    : 0xAC  (172)
+
+[PID 2] Instrução #9
+  Endereço virtual : 0x004A79  (página   2 | offset 2681)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 3 página 3 removida do frame 4
+  → Página 2 carregada do disco → frame 4
+  Endereço físico  : 0x08A79  (frame 4 | offset 2681)
+  Conteúdo lido    : 0x2C  (44)
+
+[PID 3] Instrução #9
+  Endereço virtual : 0x00AE35  (página   5 | offset 3637)
+  → Página 5 já em memória (frame 7)
+  Endereço físico  : 0x0EE35  (frame 7 | offset 3637)
+  Conteúdo lido    : 0x4D  (77)
+
+[PID 1] Instrução #10
+  Endereço virtual : 0x008096  (página   4 | offset  150)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 1 página 3 removida do frame 5
+  → Página 4 carregada do disco → frame 5
+  Endereço físico  : 0x0A096  (frame 5 | offset  150)
+  Conteúdo lido    : 0x3D  (61)
+
+[PID 2] Instrução #10
+  Endereço virtual : 0x00328A  (página   1 | offset 4746)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 2 página 0 removida do frame 2
+  → Página 1 carregada do disco → frame 2
+  Endereço físico  : 0x0528A  (frame 2 | offset 4746)
+  Conteúdo lido    : 0x76  (118)
+
+[PID 3] Instrução #10
+  Endereço virtual : 0x01CD84  (página  14 | offset 3460)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 1 página 2 removida do frame 3
+  → Página 14 carregada do disco → frame 3
+  Endereço físico  : 0x06D84  (frame 3 | offset 3460)
+  Conteúdo lido    : 0x90  (144)
+
+[PID 1] Instrução #11
+  Endereço virtual : 0x017543  (página  11 | offset 5443)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 2 página 4 removida do frame 1
+  → Página 11 carregada do disco → frame 1
+  Endereço físico  : 0x03543  (frame 1 | offset 5443)
+  Conteúdo lido    : 0x67  (103)
+
+[PID 2] Instrução #11
+  Endereço virtual : 0x006E8B  (página   3 | offset 3723)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 3 página 0 removida do frame 0
+  → Página 3 carregada do disco → frame 0
+  Endereço físico  : 0x00E8B  (frame 0 | offset 3723)
+  Conteúdo lido    : 0x0B  (11)
+
+[PID 3] Instrução #11
+  Endereço virtual : 0x0192C8  (página  12 | offset 4808)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 1 página 1 removida do frame 6
+  → Página 12 carregada do disco → frame 6
+  Endereço físico  : 0x0D2C8  (frame 6 | offset 4808)
+  Conteúdo lido    : 0x1A  (26)
+
+[PID 1] Instrução #12
+  Endereço virtual : 0x00C421  (página   6 | offset 1057)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 2 página 2 removida do frame 4
+  → Página 6 carregada do disco → frame 4
+  Endereço físico  : 0x08421  (frame 4 | offset 1057)
+  Conteúdo lido    : 0x94  (148)
+
+[PID 2] Instrução #12
+  Endereço virtual : 0x002EBD  (página   1 | offset 3773)
+  → Página 1 já em memória (frame 2)
+  Endereço físico  : 0x04EBD  (frame 2 | offset 3773)
+  Conteúdo lido    : 0x46  (70)
+
+[PID 3] Instrução #12
+  Endereço virtual : 0x012B10  (página   9 | offset 2832)
+  *** PAGE FAULT ***
+  → Substituição LRU: PID 3 página 5 removida do frame 7
+  → Página 9 carregada do disco → frame 7
+  Endereço físico  : 0x0EB10  (frame 7 | offset 2832)
+  Conteúdo lido    : 0xAF  (175)
+
+════════════════════════════════════════════════════════════════
+  ESTADO FINAL – MEMÓRIA FÍSICA
+════════════════════════════════════════════════════════════════
+FRAME  DONO                   PRIMEIROS 16 BYTES (hex)
+────────────────────────────────────────────────────────────
+  0    PID=2 PAG=3            02 03 1B 39 0F 28 39 0D 05 55 4C 8A AE 0D 4C 65
+  1    PID=1 PAG=11           01 0B 81 4B D1 A6 BF 51 5C DB 2D 8D CD EA 6B 54
+  2    PID=2 PAG=1            02 01 6F 90 7F 12 90 89 7A F8 92 53 93 48 5C 57
+  3    PID=3 PAG=14           03 0E 70 85 45 67 A3 1F 42 A5 13 8F 41 21 B6 93
+  4    PID=1 PAG=6            01 06 2B AE CC F6 F9 9F A2 89 28 28 19 52 00 44
+  5    PID=1 PAG=4            01 04 A3 D6 FF 16 D3 E4 B8 87 48 B1 D0 B5 CB 61
+  6    PID=3 PAG=12           03 0C 28 35 74 75 28 CA 05 B6 3C CB 60 B3 F2 5B
+  7    PID=3 PAG=9            03 09 35 DF FE B8 FE 8C 52 AB 53 CE 73 C0 E2 6D
+
+════════════════════════════════════════════════════════════════
+  TABELAS DE PÁGINAS (páginas residentes)
+════════════════════════════════════════════════════════════════
+  Tabela de páginas – PID 1
+  PAG    FRAME    VÁLIDO   LAST_USED
+  ────────────────────────────────────
+  0      ─        NÃO      0
+  1      ─        NÃO      25
+  2      ─        NÃO      22
+  3      ─        NÃO      19
+  4      5        SIM      28
+  5      ─        NÃO      0
+  6      4        SIM      34
+  7      ─        NÃO      0
+  8      ─        NÃO      0
+  9      ─        NÃO      10
+  10     ─        NÃO      0
+  11     1        SIM      31
+
+  Tabela de páginas – PID 2
+  PAG    FRAME    VÁLIDO   LAST_USED
+  ────────────────────────────────────
+  0      ─        NÃO      20
+  1      2        SIM      35
+  2      ─        NÃO      26
+  3      0        SIM      32
+  4      ─        NÃO      23
+
+  Tabela de páginas – PID 3
+  PAG    FRAME    VÁLIDO   LAST_USED
+  ────────────────────────────────────
+  0      ─        NÃO      24
+  1      ─        NÃO      9
+  2      ─        NÃO      0
+  3      ─        NÃO      18
+  4      ─        NÃO      0
+  5      ─        NÃO      27
+  6      ─        NÃO      0
+  7      ─        NÃO      0
+  8      ─        NÃO      0
+  9      7        SIM      36
+  10     ─        NÃO      12
+  11     ─        NÃO      3
+  12     6        SIM      33
+  13     ─        NÃO      0
+  14     3        SIM      30
+  15     ─        NÃO      0
+
+
+════════════════════════════════════════════════════════════════
+  ESTATÍSTICAS DE ACESSO
+════════════════════════════════════════════════════════════════
+  PID    ACESSOS      PAGE FAULTS    TAXA PF
+  ────────────────────────────────────────────
+  1      12           8              66.7%
+  2      12           8              66.7%
+  3      12           10             83.3%
+
+════════════════════════════════════════════════════════════════
+  Simulação concluída.
+═════════════════════════════════════════════
